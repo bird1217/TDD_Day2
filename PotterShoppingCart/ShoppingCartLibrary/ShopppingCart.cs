@@ -14,7 +14,7 @@ namespace ShoppingCartLibrary
             this._bookList.Add(book);
         }
 
-        public int GetPayment()
+        public int CalculatePrice()
         {
             return _bookList.Sum(t => t.Price);
         }

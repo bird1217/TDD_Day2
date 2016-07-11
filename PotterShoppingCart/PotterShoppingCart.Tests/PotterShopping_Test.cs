@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PotterShoppingCart;
+using ShoppingCartLibrary;
 
 namespace PotterShoppingCart.Tests
 {
@@ -13,9 +14,16 @@ namespace PotterShoppingCart.Tests
     {
         [TestMethod()]
         public void 第一集買一本_結帳金額為100元()
-        {   
+        {
+            //Arrange            
+            var shoppingCart = new ShopppingCart();
+            var book1 = new Book() { chapters = 1, Price = 100 };
+            shoppingCart.Add(book1);
+
+            //Act
+            var actual = shoppingCart.CalculatePrice();
+
             //Assert
-            var actual = 0;
             var expected = 100;
             Assert.AreEqual(expected, actual);
         }

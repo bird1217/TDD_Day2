@@ -43,6 +43,9 @@ namespace ShoppingCartLibrary
                     _calculate = new QuadrupleCalculate();
                     break;
 
+                case 5:
+                    _calculate = new QuintupleCalculate();
+                    break;
                 default:
                     break;
             }

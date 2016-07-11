@@ -45,6 +45,7 @@
     <Compile Include="ICalculate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadrupleCalculate.cs" />
+    <Compile Include="QuintupleCalculate.cs" />
     <Compile Include="ShopppingCart.cs">
       <SubType>Code</SubType>
     </Compile>

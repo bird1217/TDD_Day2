@@ -35,6 +35,9 @@ namespace ShoppingCartLibrary
                 case 2:
                     _calculate = new DoulbeCalculate();
                     break;
+                case 3:
+                    _calculate = new TripleCalculate();
+                    break;
                 default:
                     break;
             }

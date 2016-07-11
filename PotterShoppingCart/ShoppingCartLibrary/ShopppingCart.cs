@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ShoppingCartLibrary
 {
@@ -19,8 +17,8 @@ namespace ShoppingCartLibrary
         {
             int groupCount = _bookList.GroupBy(t => t.chapters).Count();
             getStrtegy(groupCount);
-            
-            int sum=_bookList.Sum(t => t.Price);
+
+            int sum = _bookList.Sum(t => t.Price);
 
             return _calculate.CalculatePrice(sum);
         }
@@ -32,12 +30,19 @@ namespace ShoppingCartLibrary
                 case 1:
                     _calculate = new SingleCalculate();
                     break;
+
                 case 2:
                     _calculate = new DoulbeCalculate();
                     break;
+
                 case 3:
                     _calculate = new TripleCalculate();
                     break;
+
+                case 4:
+                    _calculate = new QuadrupleCalculate();
+                    break;
+
                 default:
                     break;
             }

@@ -8,15 +8,37 @@ namespace ShoppingCartLibrary
     public class ShopppingCart
     {
         private List<Book> _bookList = new List<Book>();
+        private ICalculate _calculate;
 
         public void Add(Book book)
         {
             this._bookList.Add(book);
         }
 
-        public int CalculatePrice()
+        public double CalculatePrice()
         {
-            return _bookList.Sum(t => t.Price);
+            int groupCount = _bookList.GroupBy(t => t.chapters).Count();
+            getStrtegy(groupCount);
+            
+            int sum=_bookList.Sum(t => t.Price);
+
+            return _calculate.CalculatePrice(sum);
+        }
+
+        private ICalculate getStrtegy(int groupCount)
+        {
+            switch (groupCount)
+            {
+                case 1:
+                    _calculate = new SingleCalculate();
+                    break;
+                case 2:
+                    _calculate = new DoulbeCalculate();
+                    break;
+                default:
+                    break;
+            }
+            return _calculate;
         }
     }
 }

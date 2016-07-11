@@ -87,5 +87,30 @@ namespace PotterShoppingCart.Tests
             var expected = 320;
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod()]
+        public void 一二三四五集各買了一本_結帳金額為375元()
+        {
+            //Arrange            
+            var shoppingCart = new ShopppingCart();
+            var book1 = new Book() { chapters = 1, Price = 100 };
+            var book2 = new Book() { chapters = 2, Price = 100 };
+            var book3 = new Book() { chapters = 3, Price = 100 };
+            var book4 = new Book() { chapters = 4, Price = 100 };
+            var book5 = new Book() { chapters = 5, Price = 100 };
+            shoppingCart.Add(book1);
+            shoppingCart.Add(book2);
+            shoppingCart.Add(book3);
+            shoppingCart.Add(book4);
+            shoppingCart.Add(book5);
+
+            //Act
+            var actual = shoppingCart.CalculatePrice();
+
+            //Assert
+            var expected = 375;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PotterShoppingCart;
 using ShoppingCartLibrary;
 
 namespace PotterShoppingCart.Tests
@@ -15,7 +9,7 @@ namespace PotterShoppingCart.Tests
         [TestMethod()]
         public void 第一集買一本_結帳金額為100元()
         {
-            //Arrange            
+            //Arrange
             var shoppingCart = new ShopppingCart();
             var book1 = new Book() { chapters = 1, Price = 100 };
             shoppingCart.Add(book1);
@@ -31,7 +25,7 @@ namespace PotterShoppingCart.Tests
         [TestMethod()]
         public void 第一集買一本_第二集買一本_結帳金額為190元()
         {
-            //Arrange            
+            //Arrange
             var shoppingCart = new ShopppingCart();
             var book1 = new Book() { chapters = 1, Price = 100 };
             var book2 = new Book() { chapters = 2, Price = 100 };
@@ -49,7 +43,7 @@ namespace PotterShoppingCart.Tests
         [TestMethod()]
         public void 第一集買一本_第二集買一本_第三集買一本_結帳金額為270元()
         {
-            //Arrange            
+            //Arrange
             var shoppingCart = new ShopppingCart();
             var book1 = new Book() { chapters = 1, Price = 100 };
             var book2 = new Book() { chapters = 2, Price = 100 };
@@ -69,7 +63,7 @@ namespace PotterShoppingCart.Tests
         [TestMethod()]
         public void 第一集買一本_第二集買一本_第三集買一本_第四集買一本_結帳金額為320元()
         {
-            //Arrange            
+            //Arrange
             var shoppingCart = new ShopppingCart();
             var book1 = new Book() { chapters = 1, Price = 100 };
             var book2 = new Book() { chapters = 2, Price = 100 };
@@ -88,17 +82,17 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actual);
         }
 
-
         [TestMethod()]
         public void 一二三四五集各買了一本_結帳金額為375元()
         {
-            //Arrange            
+            //Arrange
             var shoppingCart = new ShopppingCart();
             var book1 = new Book() { chapters = 1, Price = 100 };
             var book2 = new Book() { chapters = 2, Price = 100 };
             var book3 = new Book() { chapters = 3, Price = 100 };
             var book4 = new Book() { chapters = 4, Price = 100 };
             var book5 = new Book() { chapters = 5, Price = 100 };
+
             shoppingCart.Add(book1);
             shoppingCart.Add(book2);
             shoppingCart.Add(book3);
@@ -110,6 +104,28 @@ namespace PotterShoppingCart.Tests
 
             //Assert
             var expected = 375;
+            Assert.AreEqual(expected, actual);
+        }
+
+        //Scenario: 一二集各買了一本，第三集買了兩本，價格應為100*3*0.9 + 100 = 370
+        [TestMethod()]
+        public void 第一集買一本_第二集買兩本_結帳金額為370元()
+        {
+            //Arrange
+            var shoppingCart = new ShopppingCart();
+            var book1 = new Book() { chapters = 1, Price = 100 };
+            var book2 = new Book() { chapters = 2, Price = 100 };
+            var book3 = new Book() { chapters = 2, Price = 100 };
+
+            shoppingCart.Add(book1);
+            shoppingCart.Add(book2);
+            shoppingCart.Add(book3);
+
+            //Act
+            var actual = shoppingCart.CalculatePrice();
+
+            //Assert
+            var expected = 370;
             Assert.AreEqual(expected, actual);
         }
     }

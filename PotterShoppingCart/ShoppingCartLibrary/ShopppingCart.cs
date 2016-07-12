@@ -5,7 +5,7 @@ namespace ShoppingCartLibrary
 {
     public class ShopppingCart
     {
-        private List<Book> _bookList = new List<Book>();
+        public List<Book> _bookList = new List<Book>();
         private ICalculate _calculate;
 
         public void Add(Book book)
@@ -16,6 +16,7 @@ namespace ShoppingCartLibrary
         public double CalculatePrice()
         {
             int groupCount = _bookList.GroupBy(t => t.chapters).Count();
+
             getStrtegy(groupCount);
 
             int sum = _bookList.Sum(t => t.Price);

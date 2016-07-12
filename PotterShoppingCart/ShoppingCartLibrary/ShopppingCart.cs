@@ -15,13 +15,22 @@ namespace ShoppingCartLibrary
 
         public double CalculatePrice()
         {
-            int groupCount = _bookList.GroupBy(t => t.chapters).Count();
+            int groupCount;
+            double sum = 0;
+            while (_bookList.Count > 0)
+            { 
+                var bundleList= GetbundleBook(out groupCount);
+                getStrtegy(groupCount);
 
-            getStrtegy(groupCount);
+                //加總bundle總價
+                int subTotal = bundleList.Sum(t => t.Price);
 
-            int sum = _bookList.Sum(t => t.Price);
+                sum += _calculate.CalculatePrice(subTotal);
 
-            return _calculate.CalculatePrice(sum);
+                //從原始購物車移除bundle項目
+                bundleList.ForEach(t => _bookList.Remove(t));
+            }
+            return sum;
         }
 
         private ICalculate getStrtegy(int groupCount)
@@ -51,6 +60,24 @@ namespace ShoppingCartLibrary
                     break;
             }
             return _calculate;
+        }
+
+        private List<Book> GetbundleBook(out int groupCount)
+        {
+            List<Book> _bundleList = new List<Book>();
+            var bundle = from v in _bookList
+                         group v by v.chapters
+                             into g
+                             select g;
+
+            groupCount = bundle.Count();
+            foreach (var bundleItem in bundle)
+            {
+                int chapter = bundleItem.Key;
+                Book _bundleItem = _bookList.First(t => t.chapters == chapter);
+                _bundleList.Add(_bundleItem);
+            }
+            return _bundleList;
         }
     }
 }

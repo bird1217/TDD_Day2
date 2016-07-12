@@ -107,7 +107,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        //Scenario: 一二集各買了一本，第三集買了兩本，價格應為100*3*0.9 + 100 = 370
+        
         [TestMethod()]
         public void 第一集買一本_第二集買一本_第三集買兩本_結帳金額為370元()
         {
@@ -129,6 +129,31 @@ namespace PotterShoppingCart.Tests
 
             //Assert
             var expected = 370;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void 第一集買一本_第二集買兩本_第三集買兩本_結帳金額為460元()
+        {
+            //Arrange
+            var shoppingCart = new ShopppingCart();
+            var book1 = new Book() { chapters = 1, Price = 100 };
+            var book2 = new Book() { chapters = 2, Price = 100 };
+            var book3 = new Book() { chapters = 2, Price = 100 };
+            var book4 = new Book() { chapters = 3, Price = 100 };
+            var book5 = new Book() { chapters = 3, Price = 100 };
+
+            shoppingCart.Add(book1);
+            shoppingCart.Add(book2);
+            shoppingCart.Add(book3);
+            shoppingCart.Add(book4);
+            shoppingCart.Add(book5);
+
+            //Act
+            var actual = shoppingCart.CalculatePrice();
+
+            //Assert
+            var expected = 460;
             Assert.AreEqual(expected, actual);
         }
     }
